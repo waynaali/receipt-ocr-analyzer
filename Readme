@@ -1,0 +1,91 @@
+# 🧾 Receipt OCR Analyzer
+
+A Document Intelligence project that extracts and analyzes text from receipt images using **Tesseract OCR** and **EasyOCR**, with image preprocessing using **OpenCV** and structured data extraction using **Regex**.
+
+---
+
+## 📌 Project Overview
+
+This project demonstrates how OCR (Optical Character Recognition) can be used to extract meaningful information from receipt images. It is part of **Lab 5: Document Intelligence - OCR Basics**.
+
+The system processes images and extracts structured data such as:
+- Merchant/Shop Name
+- Date
+- Item Names
+- Prices
+- Total Amount
+
+---
+
+## ⚙️ Features
+
+- 📷 Image-based text extraction  
+- 🔍 OCR using Tesseract and EasyOCR  
+- 🧹 Image preprocessing with OpenCV  
+- 📊 Comparison of OCR results  
+- 🧾 Receipt data parsing using Regex  
+- 🔄 Supports multiple receipts  
+
+---
+
+## 🔄 Workflow
+Image → Preprocessing → OCR → Text Extraction → Data Parsing
+
+
+---
+
+## 🛠️ Technologies Used
+
+- Python  
+- Tesseract OCR  
+- EasyOCR  
+- OpenCV  
+- PIL (Pillow)  
+- Regex  
+- Matplotlib  
+
+---
+
+## 🚀 How It Works
+
+1. Load receipt image  
+2. Apply preprocessing (grayscale, blur, threshold)  
+3. Extract text using OCR engines  
+4. Compare outputs  
+5. Extract structured data using regex  
+
+---
+
+## 📊 Example Output
+
+
+COFFEE SHOP
+Cappuccino $4.50
+Croissant $3.25
+TOTAL: $7.75
+
+
+---
+
+## 🎯 Objective
+
+To understand the basics of OCR systems and how image preprocessing improves text extraction accuracy in real-world document analysis.
+
+---
+
+## 📁 Project Structure
+
+
+receipt-ocr-analyzer/
+│
+├── images/
+├── receipts/
+├── notebook.ipynb
+├── main.py
+└── README.md
+
+
+---
+
+## 👨‍💻 Author
+Wayna Ali

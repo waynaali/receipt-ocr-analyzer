@@ -1,18 +1,18 @@
-
 # 🧾 Receipt OCR Analyzer
 
-A Document Intelligence project that extracts and analyzes text from receipt images using **Tesseract OCR** and **EasyOCR**, with image preprocessing using **OpenCV** and structured data extraction using **Regex**.
+A Document Intelligence project that extracts and analyzes text from receipt images using Tesseract OCR and EasyOCR, with OpenCV preprocessing and Regex-based data extraction.
 
 ---
 
 ## 📌 Project Overview
 
-This project demonstrates how OCR (Optical Character Recognition) can be used to extract meaningful information from receipt images. It is part of **Lab 5: Document Intelligence - OCR Basics**.
+This project demonstrates how OCR (Optical Character Recognition) is used to extract information from receipt images.  
+It is part of **Lab 5: Document Intelligence - OCR Basics**.
 
-The system processes images and extracts structured data such as:
-- Merchant/Shop Name  
+Extracted data includes:
+- Merchant Name  
 - Date  
-- Item Names  
+- Items  
 - Prices  
 - Total Amount  
 
@@ -20,22 +20,18 @@ The system processes images and extracts structured data such as:
 
 ## ⚙️ Features
 
-- 📷 Image-based text extraction  
-- 🔍 OCR using Tesseract and EasyOCR  
-- 🧹 Image preprocessing with OpenCV  
-- 📊 Comparison of OCR results  
-- 🧾 Receipt data parsing using Regex  
-- 🔄 Supports multiple receipt images  
+- Image-based text extraction  
+- OCR using Tesseract and EasyOCR  
+- Image preprocessing using OpenCV  
+- OCR comparison  
+- Receipt parsing using Regex  
+- Multiple receipt support  
 
 ---
 
 ## 🔄 Workflow
 
-```
-
 Image → Preprocessing → OCR → Text Extraction → Data Parsing
-
-```
 
 ---
 
@@ -45,7 +41,7 @@ Image → Preprocessing → OCR → Text Extraction → Data Parsing
 - Tesseract OCR  
 - EasyOCR  
 - OpenCV  
-- PIL (Pillow)  
+- Pillow  
 - Regex  
 - Matplotlib  
 
@@ -53,52 +49,43 @@ Image → Preprocessing → OCR → Text Extraction → Data Parsing
 
 ## 🚀 How It Works
 
-1. Load receipt image  
-2. Apply preprocessing (grayscale, blur, threshold)  
-3. Extract text using OCR engines  
+1. Load image  
+2. Preprocess image (grayscale, blur, threshold)  
+3. Apply OCR  
 4. Compare outputs  
-5. Extract structured data using Regex  
+5. Extract structured data  
 
 ---
 
 ## 📊 Example Output
 
-```
-
-COFFEE SHOP
-Cappuccino $4.50
-Croissant $3.25
-TOTAL: $7.75
-
-```
+COFFEE SHOP  
+Cappuccino $4.50  
+Croissant $3.25  
+TOTAL: $7.75  
 
 ---
 
 ## 🎯 Objective
 
-To understand the basics of OCR systems and how image preprocessing improves text extraction accuracy in real-world document analysis.
+To understand OCR systems and improve text extraction accuracy using image preprocessing techniques.
 
 ---
 
 ## 📁 Project Structure
 
-```
-
 receipt-ocr-analyzer/
-│
-├── images/
-├── receipts/
-├── notebook.ipynb
-├── main.py
-└── README.md
 
-```
+- images/
+- receipts/
+- notebook.ipynb
+- main.py
+- README.md
 
 ---
 
 ## 👨‍💻 Author
 
 Wayna Ali  
-BS Electronics Student  
-Introduction to Applied Artificial Intelligence – Lab 5 Project
-
+BS Computer Engineering Student  
+AI Lab 5 Project

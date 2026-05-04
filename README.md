@@ -1,210 +1,256 @@
-# 🧾 OCR & Digit Recognition System
+# 🧾 OCR & Intelligent Document Processing System
 
-An advanced **Document Intelligence project** that performs **image preprocessing, perspective correction, deskewing, morphological processing, and digit recognition using a Convolutional Neural Network (CNN)**.
+### (Weeks 5 + 6 + 7 Combined Project)
 
-This project extends the basic OCR system by improving input image quality and integrating a deep learning model for handwritten digit classification.
+An end-to-end **Document Intelligence system** that evolves from basic OCR to advanced AI-based information extraction using:
+
+* OCR (Tesseract)
+* Image preprocessing (OpenCV)
+* CNN-based digit recognition
+* Regex-based structured extraction
+* spaCy Named Entity Recognition (NER)
+* JSON-based structured output pipeline
 
 ---
 
 # 📌 Project Overview
 
-This project demonstrates how **image preprocessing techniques combined with deep learning** can significantly improve text and digit recognition from images.
+This project demonstrates a complete progression of document understanding:
 
-The system processes raw images using several enhancement steps and then applies a **CNN-based model trained on the MNIST dataset** to recognize handwritten digits.
+* **Week 5 → Basic OCR pipeline**
+* **Week 6 → Image enhancement + CNN digit recognition**
+* **Week 7 → Information extraction + NLP-based structuring**
 
-It is part of **AI Lab – Week 6: Image Preprocessing and CNN-based Digit Recognition**.
-
----
-
-# 🎯 Objectives
-
-* Perform **perspective correction** on distorted document images
-* Implement **automatic deskewing** for proper alignment
-* Apply **morphological image processing techniques**
-* Train a **CNN model for handwritten digit recognition**
-* Achieve **high classification accuracy using MNIST dataset**
-* Visualize **training performance and predictions**
+The final system converts unstructured document images into **clean structured JSON data**.
 
 ---
 
-# 🔄 System Workflow
+# 🧩 WEEK 5: BASIC OCR PIPELINE
 
-Image Input
-→ Perspective Correction
-→ Deskewing
-→ Morphological Processing
-→ CNN Feature Extraction
-→ Digit Classification
-→ Results Visualization
+## 🎯 Objectives
 
----
-
-# 🖼 Image Preprocessing Techniques
-
-## 1️⃣ Perspective Correction
-
-Used to correct **tilted or distorted images** using perspective transformation.
-
-This ensures the document appears **flat and properly aligned** before further processing.
+* Introduce OCR using Tesseract
+* Extract raw text from images
+* Basic image loading and preprocessing
+* Understand limitations of raw OCR output
 
 ---
 
-## 2️⃣ Automatic Deskewing
+## 🔍 Key Work Done
 
-Automatically detects the **skew angle** of the image and rotates it to align text or digits horizontally.
+### 1️⃣ OCR using Tesseract
 
-This improves OCR and recognition accuracy.
+* Converted image → text
+* Used `pytesseract.image_to_string()`
 
----
+### 2️⃣ Image Handling
 
-## 3️⃣ Morphological Operations
+* Loaded images using PIL / OpenCV
+* Converted images into readable format for OCR
 
-Several morphological image processing techniques were implemented:
+### 3️⃣ Basic Output
 
-**Erosion**
+Extracted raw text such as:
 
-* Removes small noise
-* Shrinks objects
-
-**Dilation**
-
-* Expands objects
-* Fills small gaps
-
-**Opening**
-
-* Erosion followed by dilation
-* Removes small noise while preserving object shape
-
-**Closing**
-
-* Dilation followed by erosion
-* Fills small holes in objects
+* Invoice content
+* Dates (unstructured)
+* Amounts (no formatting)
 
 ---
 
-# 🤖 CNN Model for Digit Recognition
+## ⚠️ Limitations Identified
 
-A **Convolutional Neural Network (CNN)** was implemented for handwritten digit classification.
-
-### Architecture Summary
-
-Input Layer
-28×28 grayscale images
-
-Convolution Layer
-Extracts spatial features
-
-Activation Function
-ReLU
-
-Pooling Layer
-MaxPooling
-
-Flatten Layer
-Converts feature maps to vector
-
-Dense Layers
-Fully connected layers for classification
-
-Output Layer
-Softmax activation for **10 digit classes (0–9)**
+* No noise removal
+* Skewed images reduce accuracy
+* Unstructured output
+* No entity understanding
 
 ---
 
-# 📊 Model Training
+# 🖼 WEEK 6: IMAGE PREPROCESSING + CNN DIGIT RECOGNITION
 
-Dataset: **MNIST Handwritten Digits**
+## 🎯 Objectives
 
-Training parameters:
-
-Optimizer: Adam
-Loss Function: Categorical Crossentropy
-Batch Size: 128
-Epochs: 10
-Validation Split: 10%
+* Improve OCR input quality
+* Apply image preprocessing techniques
+* Train CNN for digit recognition (MNIST)
 
 ---
 
-# 📈 Training Visualization
+## 🔄 Image Preprocessing Pipeline
 
-The following graphs were generated:
+* Perspective Correction
+* Automatic Deskewing
+* Morphological Operations:
 
-* **Training vs Validation Accuracy**
-* **Training vs Validation Loss**
-
-These plots verify **model convergence and learning performance**.
-
----
-
-# 🔍 Test Predictions
-
-The trained model was evaluated on the **MNIST test dataset**.
-
-Predictions were visualized to confirm:
-
-* Correct digit classifications
-* Occasional misclassifications for analysis
+  * Erosion
+  * Dilation
+  * Opening
+  * Closing
 
 ---
 
-# ✅ Key Achievements
+## 🤖 CNN Model (MNIST)
 
-✔ Perspective correction successfully implemented
-✔ Automatic deskewing working correctly
-✔ All morphological operations demonstrated
-✔ CNN model designed and trained
-✔ Achieved **~99% accuracy on MNIST dataset**
-✔ Training history visualized using plots
-✔ Test predictions successfully displayed
+### Architecture:
+
+* Input: 28×28 grayscale images
+* Convolution layers
+* ReLU activation
+* MaxPooling
+* Dense layers
+* Softmax output (0–9 digits)
+
+### Training:
+
+* Optimizer: Adam
+* Loss: Categorical Crossentropy
+* Epochs: 10
+* Accuracy: ~99%
 
 ---
 
-# 🛠 Technologies Used
+## 📊 Results
 
-* Python
+* Clean digit recognition
+* Strong generalization on MNIST dataset
+* Improved OCR readiness
+
+---
+
+# 🧠 WEEK 7: INFORMATION EXTRACTION + NER
+
+## 🎯 Objectives
+
+* Extract structured data from OCR text
+* Use Regex for pattern extraction
+* Apply spaCy NER
+* Build complete invoice pipeline
+* Export JSON output
+
+---
+
+## 🔍 Regex-Based Extraction
+
+### ✔ Dates
+
+Supports:
+
+* MM/DD/YYYY
+* DD-MM-YYYY
+* Month DD, YYYY
+* YYYY-MM-DD
+
+### ✔ Currency Amounts
+
+Handles:
+
+* $1,250.50
+* 1250.50
+* $1250
+
+### ✔ Invoice Numbers
+
+Formats:
+
+* INV-2024-001
+* ORDER-ABC123
+* #12345
+
+---
+
+## 🧠 Named Entity Recognition (spaCy)
+
+Extracted:
+
+* PERSON → names
+* ORG → organizations
+* GPE/LOC → locations
+* DATE → time references
+* MONEY → financial values
+
+---
+
+## 🔗 Final Pipeline
+
+Image → OCR → Regex → NER → Structuring → JSON
+
+---
+
+## 📦 Final Output Example
+
+```json id="wk7json"
+{
+  "invoice_number": "INV-2024-001",
+  "dates": ["March 15, 2024"],
+  "amounts": [1250.50, 125.05],
+  "persons": ["John Smith"],
+  "organizations": ["Acme Corporation"],
+  "locations": ["New York"],
+  "total_amount": 1250.50,
+  "invoice_date": "March 15, 2024"
+}
+```
+
+---
+
+# 📊 Visualization
+
+* spaCy displaCy entity highlighting
+* HTML export (`entities.html`)
+* Color-coded named entities
+
+---
+
+# 🛠 TECHNOLOGIES USED
+
+### Week 5:
+
+* Tesseract OCR
+* PIL / OpenCV
+
+### Week 6:
+
 * OpenCV
+* TensorFlow / Keras
 * NumPy
 * Matplotlib
-* TensorFlow / Keras
-* Scikit-learn
+
+### Week 7:
+
+* Regex (`re`)
+* spaCy NLP
+* JSON processing
+* pytesseract
 
 ---
 
-# 📁 Project Structure
+# 🚀 APPLICATIONS
 
-ocr-digit-recognition/
-
-images/
-notebook.ipynb
-preprocessing.py
-cnn_model.py
-README.md
-
----
-
-# 🚀 Applications
-
-* OCR-based document digitization
-* Automated form processing
+* Invoice automation systems
+* Financial document processing
 * Bank cheque recognition
-* Receipt and invoice processing
-* Handwritten digit recognition systems
+* Receipt digitization
+* AI document understanding systems
 
 ---
 
-# 🔮 Future Improvements
+# 🔮 FUTURE IMPROVEMENTS
 
-* Extend system to **full text OCR recognition**
-* Integrate **CNN + LSTM models for sequence recognition**
-* Deploy system as **web application**
-* Improve robustness for **noisy real-world images**
+* Transformer-based OCR (TrOCR)
+* Table structure extraction
+* Web-based OCR dashboard
+* Cloud deployment (API system)
+* Multilingual document support
 
 ---
 
-# 👨‍💻 Author
+# 👨‍💻 AUTHOR
 
-Wayna Ali
-BS Electronics Student
-AI Lab – Week 6 Project
+**Wayna Ali**
+BS Electronics
+AI Lab Project 2
+OCR + CNN + NLP Document Intelligence System
 
+✔ Or make a **professional PDF report (submission-ready formatting)**
+✔ Or help you **merge your notebooks into a clean final project repo structure**

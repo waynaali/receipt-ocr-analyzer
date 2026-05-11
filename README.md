@@ -1,6 +1,6 @@
 # 🧾 OCR & Intelligent Document Processing System
 
-### (Weeks 5–7 Integrated AI Pipeline Project)
+### (Weeks 5–8 Integrated AI Pipeline Project)
 
 An end-to-end **Document Intelligence System** that transforms unstructured document images into structured, machine-readable JSON using OCR, image processing, and NLP techniques.
 

@@ -1,69 +1,76 @@
 # 🧾 OCR & Intelligent Document Processing System
 
-### (Weeks 5 + 6 + 7 Combined Project)
+### (Weeks 5–7 Integrated AI Pipeline Project)
 
-An end-to-end **Document Intelligence system** that evolves from basic OCR to advanced AI-based information extraction using:
+An end-to-end **Document Intelligence System** that transforms unstructured document images into structured, machine-readable JSON using OCR, image processing, and NLP techniques.
 
-* OCR (Tesseract)
-* Image preprocessing (OpenCV)
-* CNN-based digit recognition
-* Regex-based structured extraction
-* spaCy Named Entity Recognition (NER)
-* JSON-based structured output pipeline
+It evolves across three stages:
+
+* **Week 5 → OCR baseline system**
+* **Week 6 → Image preprocessing + CNN digit recognition**
+* **Week 7 → NLP-based information extraction + structured output**
+* **Final → FastAPI deployment for real-time document classification**
 
 ---
 
 # 📌 Project Overview
 
-This project demonstrates a complete progression of document understanding:
+This system performs intelligent document understanding by combining:
 
-* **Week 5 → Basic OCR pipeline**
-* **Week 6 → Image enhancement + CNN digit recognition**
-* **Week 7 → Information extraction + NLP-based structuring**
-
-The final system converts unstructured document images into **clean structured JSON data**.
+* Optical Character Recognition (OCR)
+* Image preprocessing (OpenCV)
+* Machine Learning classification (TF-IDF + Logistic Regression)
+* Rule-based extraction (Regex)
+* NLP-based Named Entity Recognition (spaCy)
+* REST API deployment (FastAPI)
 
 ---
 
-# 🧩 WEEK 5: BASIC OCR PIPELINE
+# 🧩 System Pipeline
+
+```text
+Input Image
+   ↓
+Image Preprocessing (OpenCV)
+   ↓
+OCR (Tesseract)
+   ↓
+Text Cleaning & Feature Extraction
+   ↓
+ML Classification (Document Type)
+   ↓
+Information Extraction (Regex + spaCy NER)
+   ↓
+Structured JSON Output
+```
+
+---
+
+# 📁 WEEK 5: BASIC OCR PIPELINE
 
 ## 🎯 Objectives
 
-* Introduce OCR using Tesseract
-* Extract raw text from images
-* Basic image loading and preprocessing
-* Understand limitations of raw OCR output
+* Extract raw text from document images using OCR
+* Understand limitations of unprocessed OCR output
 
----
+## 🛠 Implementation
 
-## 🔍 Key Work Done
+* `pytesseract.image_to_string()`
+* PIL / OpenCV image loading
 
-### 1️⃣ OCR using Tesseract
+## 📊 Output
 
-* Converted image → text
-* Used `pytesseract.image_to_string()`
+* Raw unstructured text extracted from:
 
-### 2️⃣ Image Handling
+  * invoices
+  * resumes
+  * memos
 
-* Loaded images using PIL / OpenCV
-* Converted images into readable format for OCR
+## ⚠️ Limitations
 
-### 3️⃣ Basic Output
-
-Extracted raw text such as:
-
-* Invoice content
-* Dates (unstructured)
-* Amounts (no formatting)
-
----
-
-## ⚠️ Limitations Identified
-
-* No noise removal
-* Skewed images reduce accuracy
-* Unstructured output
-* No entity understanding
+* Noise-sensitive OCR
+* No structure in extracted text
+* No entity recognition
 
 ---
 
@@ -71,167 +78,153 @@ Extracted raw text such as:
 
 ## 🎯 Objectives
 
-* Improve OCR input quality
-* Apply image preprocessing techniques
-* Train CNN for digit recognition (MNIST)
+* Improve OCR accuracy using preprocessing
+* Train CNN model for digit classification
 
----
+## 🔄 Image Preprocessing Techniques
 
-## 🔄 Image Preprocessing Pipeline
+* Grayscale conversion
+* Thresholding
+* Noise removal
+* Morphological operations (erosion, dilation)
+* Deskewing correction
 
-* Perspective Correction
-* Automatic Deskewing
-* Morphological Operations:
-
-  * Erosion
-  * Dilation
-  * Opening
-  * Closing
-
----
-
-## 🤖 CNN Model (MNIST)
+## 🤖 CNN Model (MNIST Dataset)
 
 ### Architecture:
 
-* Input: 28×28 grayscale images
 * Convolution layers
 * ReLU activation
 * MaxPooling
-* Dense layers
-* Softmax output (0–9 digits)
+* Fully connected layers
+* Softmax output (digits 0–9)
 
-### Training:
+### Performance:
 
-* Optimizer: Adam
-* Loss: Categorical Crossentropy
-* Epochs: 10
 * Accuracy: ~99%
+* Optimized for digit recognition tasks
 
 ---
 
-## 📊 Results
-
-* Clean digit recognition
-* Strong generalization on MNIST dataset
-* Improved OCR readiness
-
----
-
-# 🧠 WEEK 7: INFORMATION EXTRACTION + NER
+# 🧠 WEEK 7: NLP + INFORMATION EXTRACTION
 
 ## 🎯 Objectives
 
 * Extract structured data from OCR text
-* Use Regex for pattern extraction
-* Apply spaCy NER
-* Build complete invoice pipeline
-* Export JSON output
+* Apply NLP for entity recognition
+* Generate structured JSON output
 
 ---
 
 ## 🔍 Regex-Based Extraction
 
-### ✔ Dates
-
-Supports:
-
-* MM/DD/YYYY
-* DD-MM-YYYY
-* Month DD, YYYY
-* YYYY-MM-DD
-
-### ✔ Currency Amounts
-
-Handles:
-
-* $1,250.50
-* 1250.50
-* $1250
-
-### ✔ Invoice Numbers
-
-Formats:
-
-* INV-2024-001
-* ORDER-ABC123
-* #12345
+* Dates (multiple formats supported)
+* Currency values
+* Invoice numbers
+* Reference IDs
 
 ---
 
-## 🧠 Named Entity Recognition (spaCy)
+## 🧠 spaCy NER Extraction
 
-Extracted:
+Entities extracted:
 
-* PERSON → names
-* ORG → organizations
-* GPE/LOC → locations
-* DATE → time references
-* MONEY → financial values
-
----
-
-## 🔗 Final Pipeline
-
-Image → OCR → Regex → NER → Structuring → JSON
+* PERSON
+* ORG (Organizations)
+* GPE (Locations)
+* DATE
+* MONEY
 
 ---
 
-## 📦 Final Output Example
+## 📦 FINAL OUTPUT (STRUCTURED JSON)
 
-```json id="wk7json"
+```json
 {
+  "document_type": "invoice",
   "invoice_number": "INV-2024-001",
   "dates": ["March 15, 2024"],
-  "amounts": [1250.50, 125.05],
+  "amounts": [1250.50],
   "persons": ["John Smith"],
   "organizations": ["Acme Corporation"],
   "locations": ["New York"],
   "total_amount": 1250.50,
-  "invoice_date": "March 15, 2024"
+  "confidence": 0.71
 }
 ```
 
 ---
 
-# 📊 Visualization
+# ⚡ FASTAPI DEPLOYMENT
 
-* spaCy displaCy entity highlighting
-* HTML export (`entities.html`)
-* Color-coded named entities
+## 🚀 Endpoints
+
+### 1. Classify Document
+
+```
+POST /classify
+```
+
+### 2. Extract Information
+
+```
+POST /extract
+```
+
+### 3. Full Pipeline
+
+```
+POST /process
+```
+
+---
+
+## 🌐 Run Server
+
+```bash
+py -m uvicorn api:app --reload
+```
+
+Open:
+
+```
+http://127.0.0.1:8000/docs
+```
 
 ---
 
 # 🛠 TECHNOLOGIES USED
 
-### Week 5:
+### OCR & Vision
 
 * Tesseract OCR
-* PIL / OpenCV
-
-### Week 6:
-
 * OpenCV
-* TensorFlow / Keras
-* NumPy
-* Matplotlib
+* PIL
 
-### Week 7:
+### Machine Learning
 
-* Regex (`re`)
-* spaCy NLP
-* JSON processing
-* pytesseract
+* Scikit-learn (TF-IDF, Logistic Regression)
+* TensorFlow / Keras (CNN)
+
+### NLP
+
+* spaCy
+* Regex (Python re)
+
+### Backend
+
+* FastAPI
+* Uvicorn
 
 ---
 
-# 🚀 APPLICATIONS
+# 🚀 REAL-WORLD APPLICATIONS
 
 * Invoice automation systems
 * Financial document processing
-* Bank cheque recognition
 * Receipt digitization
-* AI document understanding systems
+* Banking document analysis
+* Enterprise document intelligence systems
 
 ---
 
@@ -239,18 +232,25 @@ Image → OCR → Regex → NER → Structuring → JSON
 
 * Transformer-based OCR (TrOCR)
 * Table structure extraction
-* Web-based OCR dashboard
-* Cloud deployment (API system)
-* Multilingual document support
+* End-to-end deep learning pipeline
+* Cloud deployment (AWS / Render / HuggingFace)
+* Web UI dashboard for uploads
 
 ---
 
 # 👨‍💻 AUTHOR
 
 **Wayna Ali**
-BS Electronics
-AI Lab Project 2
-OCR + CNN + NLP Document Intelligence System
+BS Electronics 
+Introduction To AI Project
+Document Intelligence System (OCR + ML + NLP)
 
-✔ Or make a **professional PDF report (submission-ready formatting)**
-✔ Or help you **merge your notebooks into a clean final project repo structure**
+---
+
+# ⭐ FINAL NOTE
+
+This project demonstrates a **complete AI pipeline from raw images to structured intelligence**, combining:
+
+> Computer Vision + Machine Learning + Natural Language Processing + API Deployment
+
+
